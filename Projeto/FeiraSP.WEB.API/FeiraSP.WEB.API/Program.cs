@@ -2,6 +2,7 @@ using FeiraSP.WEB.API.Data;
 using FeiraSP.WEB.API.Services;
 using FeiraSP.WEB.API.CustomErrors;
 using Microsoft.EntityFrameworkCore;
+using FeiraSP.WEB.API.CustomLog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,10 +25,11 @@ builder.Services.AddScoped<ISubPrefeituraService, SubPrefeituraService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddSingleton<IFeiraLog, FeiraNLog>();
+
 
 
 var app = builder.Build();
-
 
 
 // Configure the HTTP request pipeline.
