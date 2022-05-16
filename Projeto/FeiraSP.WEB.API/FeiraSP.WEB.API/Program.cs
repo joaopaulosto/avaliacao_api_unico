@@ -27,8 +27,6 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IFeiraLog, FeiraNLog>();
 
-
-
 var app = builder.Build();
 
 

@@ -48,10 +48,15 @@ namespace FeiraSP.WEB.API.Controllers
         {
             _logger.Information(String.Format("Criando Nova Feira:{0}", feiraDto));
 
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var id = _feiraService.Criar(feiraDto);
             if (id > 0) {
                 _logger.Information(String.Format("Feira Criada com ID:{0}", id));
-                return Created(String.Format(urlConsulta, id), "Registro Criado com sucesso");
+                feiraDto.Id = id;
+                return CreatedAtAction("Get", new { id = id }, feiraDto);
             }
 
             return BadRequest();

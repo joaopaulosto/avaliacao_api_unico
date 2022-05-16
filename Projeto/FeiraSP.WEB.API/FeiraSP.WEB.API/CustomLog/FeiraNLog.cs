@@ -4,30 +4,41 @@ namespace FeiraSP.WEB.API.CustomLog
 {
     public class FeiraNLog: IFeiraLog
     {
-        private static NLog.ILogger logger = LogManager.GetCurrentClassLogger();
+        private NLog.ILogger _logger;
 
-        public FeiraNLog()
+
+        public FeiraNLog() : this (null)
         {
+            
+        }
+        public FeiraNLog(NLog.ILogger logIntance)
+        {
+            if (logIntance == null)
+                _logger = LogManager.GetCurrentClassLogger();
+            else
+                _logger = logIntance;
         }
 
         public void Information(string message)
         {
-            logger.Info(message);
+            _logger.Info(message);
         }
 
         public void Warning(string message)
         {
-            logger.Warn(message);
+            _logger.Warn(message);
         }
 
         public void Debug(string message)
         {
-            logger.Debug(message);
+            _logger.Debug(message);
         }
 
         public void Error(string message)
         {
-            logger.Error(message);
+            _logger.Error(message);
         }
+
+       
     }
 }
