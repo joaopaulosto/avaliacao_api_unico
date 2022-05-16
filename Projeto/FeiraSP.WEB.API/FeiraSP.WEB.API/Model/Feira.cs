@@ -49,13 +49,13 @@ namespace FeiraSP.WEB.API.Model
         
        
         [Column(name: "CODDIST")] 
-        public int DistritoID { get; set; }
+        public int DistritoId { get; set; }
 
 
         /// <summary>
         /// Referencia ao Distrito da Feira
         /// </summary>
-        [ForeignKey("DistritoID")]
+        [ForeignKey("DistritoId")]
         public Distrito? Distrito { get; set; }
 
        

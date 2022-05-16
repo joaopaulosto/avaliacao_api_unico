@@ -5,6 +5,7 @@ using FeiraSP.WEB.API.Model.DTO;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
+using System.Linq;
 
 namespace FeiraSP.WEB.API.Services
 {
@@ -25,7 +26,7 @@ namespace FeiraSP.WEB.API.Services
                 Latitude = feiraDto.Latitude,
                 SetCens = feiraDto.SetCens,
                 Bairro = feiraDto.Bairro,
-                DistritoID = feiraDto.DistridoID,
+                DistritoId = feiraDto.DistridoID,
                 Logradouro = feiraDto.Logradouro,
                 Nome = feiraDto.Nome,
                 Numero = feiraDto.Numero,
@@ -48,7 +49,7 @@ namespace FeiraSP.WEB.API.Services
                 Latitude = feiraEntity.Latitude,
                 SetCens = feiraEntity.SetCens,
                 Bairro = feiraEntity.Bairro,
-                DistridoID = feiraEntity.DistritoID,
+                DistridoID = feiraEntity.DistritoId,
                 Logradouro = feiraEntity.Logradouro,
                 Nome = feiraEntity.Nome,
                 Numero = feiraEntity.Numero,
@@ -70,7 +71,8 @@ namespace FeiraSP.WEB.API.Services
                 };
             }
 
-            if (feiraEntity.SubPrefeitura != null) { 
+            if (feiraEntity.SubPrefeitura != null)
+            {
                 feiraResponseDto.SubPrefeitura = new SubPrefeituraResponseDto
                 {
                     Id = feiraEntity.SubPrefeitura.Id,
@@ -81,188 +83,199 @@ namespace FeiraSP.WEB.API.Services
             return feiraResponseDto;
         }
 
-    public int Criar(FeiraRequestDto feiraDto)
-    {
-
-        var feira_db = convertDtoToEntity(feiraDto);
-        this.feiraContext.Add(feira_db);
-        this.feiraContext.SaveChanges();
-        return feira_db.Id;
-
-
-    }
-
-    public FeiraResponseDto BuscarPorId(int id)
-    {
-        var feira = buscarPorId(id);
-        if (feira == null)
-            throw new KeyNotFoundException(String.Format("Id {0} não encontrado na base", id));
-
-        var feiraRespDto = convertEntityToDto(feira);
-        return feiraRespDto;
-
-    }
-
-    private Feira? buscarPorId(int id)
-    {
-        Feira? feira = feiraContext.Feiras.Include(d => d.Distrito).Include(s => s.SubPrefeitura).FirstOrDefault(f => f.Id == id);
-        return feira;
-    }
-
-    public bool Atualizar(FeiraRequestDto feiraDto)
-    {
-        var index = 0;
-        if (feiraDto.Id <= 0)
-            throw new FeiraException("O campo ID é obrigatório para alteração da feira");
-
-
-        var feiraEntity = buscarPorId(feiraDto.Id);
-
-        if (feiraEntity == null)
-            throw new KeyNotFoundException(String.Format("Id {0} não encontrado para atualizacao", feiraDto.Id));
-
-
-        if (feiraDto.AreaPrefeitura != feiraEntity.AreaPrefeitura)
+        public int Criar(FeiraRequestDto feiraDto)
         {
-            feiraEntity.AreaPrefeitura = feiraDto.AreaPrefeitura;
-            index++;
-        }
 
-        if (feiraDto.SubPrefeituraID != feiraEntity.SubPrefeituraID)
-        {
-            feiraEntity.SubPrefeituraID = feiraDto.SubPrefeituraID;
-            index++;
-        }
+            var feira_db = convertDtoToEntity(feiraDto);
+            this.feiraContext.Add(feira_db);
+            this.feiraContext.SaveChanges();
+            return feira_db.Id;
 
-        if (feiraDto.Longitude != feiraEntity.Longitude)
-        {
-            feiraEntity.Longitude = feiraDto.Longitude;
-            index++;
-        }
-
-        if (feiraDto.Latitude != feiraEntity.Latitude)
-        {
-            feiraEntity.Latitude = feiraDto.Latitude;
-            index++;
-        }
-
-
-        if (feiraDto.SetCens != feiraEntity.SetCens)
-        {
-            feiraEntity.SetCens = feiraDto.SetCens;
-            index++;
 
         }
 
-        if (!feiraDto.Bairro.Equals(feiraEntity.Bairro))
+        public FeiraResponseDto BuscarPorId(int id)
         {
-            feiraEntity.Bairro = feiraDto.Bairro;
-            index++;
+            var feira = buscarPorId(id);
+            if (feira == null)
+                throw new KeyNotFoundException(String.Format("Id {0} não encontrado na base", id));
+
+            var feiraRespDto = convertEntityToDto(feira);
+            return feiraRespDto;
+
         }
 
-        if (feiraDto.DistridoID != feiraEntity.DistritoID)
+        private Feira? buscarPorId(int id)
         {
-            feiraEntity.DistritoID = feiraDto.DistridoID;
-            index++;
+            Feira? feira = feiraContext.Feiras.Include(d => d.Distrito).Include(s => s.SubPrefeitura).FirstOrDefault(f => f.Id == id);
+            return feira;
         }
 
-        if (!feiraDto.Logradouro.Equals(feiraEntity.Logradouro))
+        public bool Atualizar(FeiraRequestDto feiraDto)
         {
-            feiraEntity.Logradouro = feiraDto.Logradouro;
-            index++;
+            var index = 0;
+            if (feiraDto.Id <= 0)
+                throw new FeiraException("O campo ID é obrigatório para alteração da feira");
+
+
+            var feiraEntity = buscarPorId(feiraDto.Id);
+
+            if (feiraEntity == null)
+                throw new KeyNotFoundException(String.Format("Id {0} não encontrado para atualizacao", feiraDto.Id));
+
+
+            if (feiraDto.AreaPrefeitura != feiraEntity.AreaPrefeitura)
+            {
+                feiraEntity.AreaPrefeitura = feiraDto.AreaPrefeitura;
+                index++;
+            }
+
+            if (feiraDto.SubPrefeituraID != feiraEntity.SubPrefeituraID)
+            {
+                feiraEntity.SubPrefeituraID = feiraDto.SubPrefeituraID;
+                index++;
+            }
+
+            if (feiraDto.Longitude != feiraEntity.Longitude)
+            {
+                feiraEntity.Longitude = feiraDto.Longitude;
+                index++;
+            }
+
+            if (feiraDto.Latitude != feiraEntity.Latitude)
+            {
+                feiraEntity.Latitude = feiraDto.Latitude;
+                index++;
+            }
+
+
+            if (feiraDto.SetCens != feiraEntity.SetCens)
+            {
+                feiraEntity.SetCens = feiraDto.SetCens;
+                index++;
+
+            }
+
+            if (!feiraDto.Bairro.Equals(feiraEntity.Bairro))
+            {
+                feiraEntity.Bairro = feiraDto.Bairro;
+                index++;
+            }
+
+            if (feiraDto.DistridoID != feiraEntity.DistritoId)
+            {
+                feiraEntity.DistritoId = feiraDto.DistridoID;
+                index++;
+            }
+
+            if (!feiraDto.Logradouro.Equals(feiraEntity.Logradouro))
+            {
+                feiraEntity.Logradouro = feiraDto.Logradouro;
+                index++;
+            }
+
+            if (!feiraDto.Nome.Equals(feiraEntity.Nome))
+            {
+                feiraEntity.Nome = feiraDto.Nome;
+                index++;
+            }
+
+            if (!feiraDto.Numero.Equals(feiraEntity.Numero))
+            {
+                feiraEntity.Numero = feiraDto.Numero;
+                index++;
+            }
+
+
+            if (!feiraDto.Referencia.Equals(feiraEntity.Referencia))
+            {
+                feiraEntity.Referencia = feiraDto.Referencia;
+                index++;
+            }
+
+            if (!feiraDto.Regiao5.Equals(feiraEntity.Regiao5))
+            {
+                feiraEntity.Regiao5 = feiraDto.Regiao5;
+                index++;
+            }
+
+            if (!feiraDto.Regiao8.Equals(feiraEntity.Regiao8))
+            {
+                feiraEntity.Regiao8 = feiraDto.Regiao8;
+                index++;
+            }
+
+            if (!feiraDto.Registro.Equals(feiraEntity.Registro))
+            {
+                feiraEntity.Registro = feiraDto.Registro;
+                index++;
+            }
+
+            if (index > 0)
+                feiraContext.SaveChanges();
+
+            return index > 0;
+
+
         }
 
-        if (!feiraDto.Nome.Equals(feiraEntity.Nome))
+        public bool Excluir(int id)
         {
-            feiraEntity.Nome = feiraDto.Nome;
-            index++;
-        }
+            var feiraEntity = buscarPorId(id);
 
-        if (!feiraDto.Numero.Equals(feiraEntity.Numero))
-        {
-            feiraEntity.Numero = feiraDto.Numero;
-            index++;
-        }
+            if (feiraEntity == null)
+                throw new KeyNotFoundException(String.Format("Id {0} não encontrado para remoção", id));
 
 
-        if (!feiraDto.Referencia.Equals(feiraEntity.Referencia))
-        {
-            feiraEntity.Referencia = feiraDto.Referencia;
-            index++;
-        }
-
-        if (!feiraDto.Regiao5.Equals(feiraEntity.Regiao5))
-        {
-            feiraEntity.Regiao5 = feiraDto.Regiao5;
-            index++;
-        }
-
-        if (!feiraDto.Regiao8.Equals(feiraEntity.Regiao8))
-        {
-            feiraEntity.Regiao8 = feiraDto.Regiao8;
-            index++;
-        }
-
-        if (!feiraDto.Registro.Equals(feiraEntity.Registro))
-        {
-            feiraEntity.Registro = feiraDto.Registro;
-            index++;
-        }
-
-        if (index > 0)
+            feiraContext.Remove(feiraEntity);
             feiraContext.SaveChanges();
 
-        return index > 0;
+            return true;
+
+
+        }
+
+        public IList<FeiraResponseDto> PesquisaFeira(int? distritoId, string? regiao5, string? nome, string? bairro)
+        {
+            validaParametrosPesquisa(distritoId, regiao5, nome, bairro);
+
+
+            var paramDistrito = new SqlParameter("@distritoId", distritoId == null ? DBNull.Value : distritoId);
+            var paramRegiao5 = new SqlParameter("@regiao5", regiao5 == null ? DBNull.Value : regiao5);
+            var paramNome = new SqlParameter("@nome", nome == null ? DBNull.Value : nome);
+            var paramBairro = new SqlParameter("@bairro", bairro == null ? DBNull.Value : bairro);
+
+
+            var sql = "SELECT [ID],[LONG],[LAT],[SETCENS],[AREAP],[CODDIST],[CODSUBPREF],[REGIAO5],[REGIAO8],[NOME_FEIRA],[REGISTRO],[LOGRADOURO],[NUMERO],[BAIRRO],[REFERENCIA] FROM [dbo].[TB_FEIRA]";
+            sql += "   WHERE "; 
+            sql += "   (CODDIST = @distritoId  OR @distritoId IS NULL)";
+            sql += "   AND(REGIAO5 LIKE '%' + @regiao5 +'%' OR @regiao5  IS NULL)";
+            sql += "   AND(NOME_FEIRA LIKE '%' + @nome +'%' OR @nome IS NULL)";
+            sql += "   AND(BAIRRO LIKE '%' + @bairro +'%' OR @bairro IS NULL)";
+
+            var itensFeira2 = feiraContext.Feiras.FromSqlRaw(sql, paramDistrito, paramRegiao5, paramNome, paramBairro)
+                    .Include(d => d.Distrito)
+                    .Include(s => s.SubPrefeitura)
+                    .ToList();
+
+            List<FeiraResponseDto> result = itensFeira2.Select(f => convertEntityToDto(f)).ToList();
+
+
+            return result;
+
+        }
+
+        private void validaParametrosPesquisa(int? distritoId, string? regiao5, string? nome, string? bairro)
+        {
+            if ((distritoId == null || distritoId == 0) &&
+                        String.IsNullOrEmpty(regiao5) &&
+                                String.IsNullOrEmpty(nome) &&
+                                    String.IsNullOrEmpty(bairro))
+                throw new FeiraException("A pequisa necessita ao menos de um campo (distrito|regiao5|nome|bairro)");
+
+
+        }
 
 
     }
-
-    public bool Excluir(int id)
-    {
-        var feiraEntity = buscarPorId(id);
-
-        if (feiraEntity == null)
-            throw new KeyNotFoundException(String.Format("Id {0} não encontrado para remoção", id));
-
-
-        feiraContext.Remove(feiraEntity);
-        feiraContext.SaveChanges();
-
-        return true;
-
-
-    }
-
-    public IList<FeiraResponseDto> PesquisaFeira(int? distritoId, string? regiao5, string? nome, string? bairro)
-    {
-        validaParametrosPesquisa(distritoId, regiao5, nome, bairro);
-
-
-        var paramDistrito = new SqlParameter("distritoId", distritoId == null ? DBNull.Value : distritoId);
-        var paramRegiao5 = new SqlParameter("regiao5", regiao5 == null ? DBNull.Value : regiao5);
-        var paramNome = new SqlParameter("nome", nome == null ? DBNull.Value : nome);
-        var paramBairro = new SqlParameter("bairro", bairro == null ? DBNull.Value : bairro);
-
-
-        var itensFeira = feiraContext.Feiras                
-                .FromSqlRaw("EXECUTE dbo.SEL_FEIRA @distritoId, @regiao5, @nome, @bairro ", paramDistrito, paramRegiao5, paramNome, paramBairro)                
-                .ToList();            
-        List<FeiraResponseDto> result = itensFeira.Select(f => convertEntityToDto(f)).ToList();
-        return result;
-
-    }
-
-    private void validaParametrosPesquisa(int? distritoId, string? regiao5, string? nome, string? bairro)
-    {
-        if ((distritoId == null || distritoId == 0) &&
-                    String.IsNullOrEmpty(regiao5) &&
-                            String.IsNullOrEmpty(nome) &&
-                                String.IsNullOrEmpty(bairro))
-            throw new FeiraException("A pequisa necessita ao menos de um campo (distrito|regiao5|nome|bairro)");
-
-
-    }
-
-
-}
 }
