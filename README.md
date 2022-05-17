@@ -3,7 +3,7 @@ Essa API foi desenvolvida em ASP .NET Core versão 6 utilizando o Visual Studio 
 No desenvolvimento foram utilizados EntityFramewerk 6.0 para persistência e consutal dos dados e o XUnit .NET para testes unitários.
 Para servidor do SQL Server foi utilizado uma imagem Docker da propria Microsoft.
 O projeto está estruturas da seguinte forma:
-
+```bash
 ├── PROJETO\
 │   ├── FeiraSP.WEB.API\ 
 │   └── FeiraSP.Web.API.TEST \
@@ -15,7 +15,7 @@ O projeto está estruturas da seguinte forma:
 │   └── 04 - INSERT TB_SUB_PREFEITURA.sql
 │   └── 05 - INSERT TB_FEIRA.sql
 │   └── 99 - ROLLBACK.sql
-
+```
 
 # Pasta Projeto
 Nessa pasta contém todos os fontes para execução da aplicação, bem como o projeto de teste unutáro. 
