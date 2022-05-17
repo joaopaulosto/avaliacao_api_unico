@@ -1,7 +1,7 @@
 ## API RestFull para processo seletivo da Único
 API para operação CRUD de dados da Feira de São Paulo (Capital) 
 Desenvolvida em ASP .NET Core versão 6 utilizando o Visual Studio 2022 Community e banco de dados Relacional SQL Server Express (Todos versões gratuitas)
-No desenvolvimento foram utilizados EntityFramewerk 6.0 para persistência e consutal dos dados e o XUnit .NET para testes unitários.
+No desenvolvimento foram utilizados EntityFramewerk 6.0 para persistência e consulta dos dados e o XUnit .NET para testes unitários.
 Para servidor do SQL Server foi utilizado uma imagem Docker da propria Microsoft.
 O projeto está estruturas da seguinte forma:
 ```bash
@@ -33,7 +33,7 @@ Nessa pasta todos os arquivos necessários para criar e popular a base de dados 
 * 03 - Realiza a Carga dos dados referente a tabela de Distritos
 * 04 - Realiza a Carga dos dados referente a tabela da SubPrefeitura
 * 05 - Realiza a Carga dos dados referente a tabela de Feira
-* 09 - Esse script só deverá ser executado em caso de falha ou desistalação da aplicação. Ele remove a base de dados do servidor SQL
+* 99 - Esse script só deverá ser executado em caso de falha ou desistalação da aplicação. Ele remove a base de dados do servidor SQL
 
 
 
