@@ -52,11 +52,10 @@ namespace FeiraSP.WEB.API.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var id = _feiraService.Criar(feiraDto);
-            if (id > 0) {
-                _logger.Information(String.Format("Feira Criada com ID:{0}", id));
-                feiraDto.Id = id;
-                return CreatedAtAction("Get", new { id = id }, feiraDto);
+            var feiraCriada = _feiraService.Criar(feiraDto);
+            if (feiraCriada.Id > 0) {
+                _logger.Information(String.Format("Feira Criada com ID:{0}", feiraCriada.Id));                
+                return CreatedAtAction(nameof(FeirasController.ConsultaFeira), new { id = feiraCriada.Id }, feiraCriada);
             }
 
             return BadRequest();

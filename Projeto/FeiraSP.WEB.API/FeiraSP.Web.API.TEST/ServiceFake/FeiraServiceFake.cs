@@ -17,109 +17,104 @@ namespace FeiraSP.Web.API.TEST.ServiceFake
 
         public FeiraServiceFake()
         {
-             _lstFeriasResp = getDataFromJson();
+            _lstFeriasResp = getDataFromJson();
         }
 
         private List<FeiraRequestDto> getDataFromJson()
         {
 
             List<FeiraRequestDto> items;
-            using (StreamReader r = new StreamReader("FeriasForTests.json"))
+            using (StreamReader r = new StreamReader("FeirasForTests.json"))
             {
                 string json = r.ReadToEnd();
                 items = JsonConvert.DeserializeObject<List<FeiraRequestDto>>(json);
-            } 
+            }
             return items;
 
-        }
-
-       
-
-        private FeiraResponseDto convertReqToResp(FeiraRequestDto feiraDto)
-        {
-            var feiraResp = new FeiraResponseDto()
-            {
-                Id = feiraDto.Id,
-                AreaPrefeitura = feiraDto.AreaPrefeitura,
-                Longitude = feiraDto.Longitude,
-                Latitude = feiraDto.Latitude,
-                SetCens = feiraDto.SetCens,
-                Bairro = feiraDto.Bairro,
-                DistridoID = feiraDto.DistridoID,
-                Logradouro = feiraDto.Logradouro,
-                Nome = feiraDto.Nome,
-                Numero = feiraDto.Numero,
-                Referencia = feiraDto.Referencia,
-                Regiao5 = feiraDto.Regiao5,
-                Regiao8 = feiraDto.Regiao8,
-                Registro = feiraDto.Registro,
-                SubPrefeituraID = feiraDto.SubPrefeituraID
-            };
-            return feiraResp;
-        }
-
-        private FeiraRequestDto convertRespToReq(FeiraResponseDto feiraDto)
-        {
-            var feiraReq = new FeiraRequestDto()
-            {
-                Id = feiraDto.Id,
-                AreaPrefeitura = feiraDto.AreaPrefeitura,
-                Longitude = feiraDto.Longitude,
-                Latitude = feiraDto.Latitude,
-                SetCens = feiraDto.SetCens,
-                Bairro = feiraDto.Bairro,
-                DistridoID = feiraDto.DistridoID,
-                Logradouro = feiraDto.Logradouro,
-                Nome = feiraDto.Nome,
-                Numero = feiraDto.Numero,
-                Referencia = feiraDto.Referencia,
-                Regiao5 = feiraDto.Regiao5,
-                Regiao8 = feiraDto.Regiao8,
-                Registro = feiraDto.Registro,
-                SubPrefeituraID = feiraDto.SubPrefeituraID
-            };
-            return feiraReq;
         }
 
 
         public bool Atualizar(FeiraRequestDto feiraDto)
         {
-            throw new NotImplementedException();
+            if (feiraDto == null || feiraDto.Id == 0)
+            {
+                throw new NullReferenceException();
+            }
+
+            var feiraExistente = _lstFeriasResp.Where(a => a.Id == feiraDto.Id).FirstOrDefault();
+
+            if(feiraExistente == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            _lstFeriasResp.Remove(feiraExistente);
+
+            var atualizou = false;
+            if(feiraExistente.Nome != feiraDto.Nome)
+            {
+                feiraExistente.Nome = feiraDto.Nome;
+                atualizou = true;
+
+            }
+            if (feiraExistente.Bairro != feiraDto.Bairro)
+            {
+                feiraExistente.Bairro = feiraDto.Bairro;
+                atualizou = true;
+
+            }
+            _lstFeriasResp.Add(feiraExistente);
+
+            return atualizou;
+
         }
 
         public FeiraResponseDto BuscarPorId(int id)
         {
             var item = _lstFeriasResp.FirstOrDefault(a => a.Id == id);
-            if(item != null)
-               return convertReqToResp(item);
+            if (item != null)
+                return FeiraUtil.convertReqToResp(item);
 
             throw new KeyNotFoundException(String.Format("Id {0} não encontrado na base", id));
         }
 
-        public int Criar(FeiraRequestDto feiraDto)
+        public FeiraResponseDto Criar(FeiraRequestDto feiraDto)
         {
-
             feiraDto.Id = FeiraUtil.CriarID();
             _lstFeriasResp.Add(feiraDto);
-            return feiraDto.Id;
-           
+            var feiraCriada = FeiraUtil.convertReqToResp(feiraDto);
+            return feiraCriada;
+
         }
 
         public bool Excluir(int id)
         {
-            var existing = _lstFeriasResp.First(a => a.Id == id);
-            return _lstFeriasResp.Remove(existing);
+            var existing = _lstFeriasResp.Where(a => a.Id == id).FirstOrDefault();
+            if (existing != null)
+                return _lstFeriasResp.Remove(existing);
+
+            return false;
+
+
         }
 
         public IList<FeiraResponseDto> PesquisaFeira(int? distritoId, string? regiao5, string? nome, string? bairro)
         {
-           var listResultado = _lstFeriasResp.Where(a => 
-                (a.DistridoID == distritoId || distritoId == null) || 
-                (a.Regiao5.Contains(regiao5) || regiao5 == null) || 
-                (a.Nome.Contains(nome) || nome == null ) ||
+
+            if ((distritoId == null || distritoId == 0) &&
+                          String.IsNullOrEmpty(regiao5) &&
+                                  String.IsNullOrEmpty(nome) &&
+                                      String.IsNullOrEmpty(bairro))
+                throw new Exception("A pequisa necessita ao menos de um campo (distrito|regiao5|nome|bairro)");
+
+
+            var listResultado = _lstFeriasResp.Where(a =>
+                (a.DistridoID == distritoId || distritoId == null) ||
+                (a.Regiao5.Contains(regiao5) || regiao5 == null) ||
+                (a.Nome.Contains(nome) || nome == null) ||
                 (a.Bairro.Contains(nome) || bairro == null)).ToList();
 
-            List<FeiraResponseDto> result = listResultado.Select(f => convertReqToResp(f)).ToList();
+            List<FeiraResponseDto> result = listResultado.Select(f => FeiraUtil.convertReqToResp(f)).ToList();
             return result;
         }
     }

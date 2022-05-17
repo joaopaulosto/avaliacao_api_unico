@@ -1,0 +1,382 @@
+[
+  {
+    "id": 1,
+    "nome": "AGUA RASA"
+  },
+  {
+    "id": 2,
+    "nome": "ALTO DE PINHEIROS"
+  },
+  {
+    "id": 3,
+    "nome": "ANHANGUERA"
+  },
+  {
+    "id": 4,
+    "nome": "ARICANDUVA"
+  },
+  {
+    "id": 5,
+    "nome": "ARTUR ALVIM"
+  },
+  {
+    "id": 6,
+    "nome": "BARRA FUNDA"
+  },
+  {
+    "id": 7,
+    "nome": "BELA VISTA"
+  },
+  {
+    "id": 8,
+    "nome": "BELEM"
+  },
+  {
+    "id": 9,
+    "nome": "BOM RETIRO"
+  },
+  {
+    "id": 10,
+    "nome": "BRAS"
+  },
+  {
+    "id": 11,
+    "nome": "BRASILANDIA"
+  },
+  {
+    "id": 12,
+    "nome": "BUTANTA"
+  },
+  {
+    "id": 13,
+    "nome": "CACHOEIRINHA"
+  },
+  {
+    "id": 14,
+    "nome": "CAMBUCI"
+  },
+  {
+    "id": 15,
+    "nome": "CAMPO BELO"
+  },
+  {
+    "id": 16,
+    "nome": "CAMPO GRANDE"
+  },
+  {
+    "id": 17,
+    "nome": "CAMPO LIMPO"
+  },
+  {
+    "id": 18,
+    "nome": "CANGAIBA"
+  },
+  {
+    "id": 19,
+    "nome": "CAPAO REDONDO"
+  },
+  {
+    "id": 20,
+    "nome": "CARRAO"
+  },
+  {
+    "id": 21,
+    "nome": "CASA VERDE"
+  },
+  {
+    "id": 22,
+    "nome": "CIDADE ADEMAR"
+  },
+  {
+    "id": 23,
+    "nome": "CIDADE DUTRA"
+  },
+  {
+    "id": 24,
+    "nome": "CIDADE LIDER"
+  },
+  {
+    "id": 25,
+    "nome": "CIDADE TIRADENTES"
+  },
+  {
+    "id": 26,
+    "nome": "CONSOLACAO"
+  },
+  {
+    "id": 27,
+    "nome": "CURSINO"
+  },
+  {
+    "id": 28,
+    "nome": "ERMELINO MATARAZZO"
+  },
+  {
+    "id": 29,
+    "nome": "FREGUESIA DO O"
+  },
+  {
+    "id": 30,
+    "nome": "GRAJAU"
+  },
+  {
+    "id": 31,
+    "nome": "GUAIANASES"
+  },
+  {
+    "id": 32,
+    "nome": "IGUATEMI"
+  },
+  {
+    "id": 33,
+    "nome": "IPIRANGA"
+  },
+  {
+    "id": 34,
+    "nome": "ITAIM BIBI"
+  },
+  {
+    "id": 35,
+    "nome": "ITAIM PAULISTA"
+  },
+  {
+    "id": 36,
+    "nome": "ITAQUERA"
+  },
+  {
+    "id": 37,
+    "nome": "JABAQUARA"
+  },
+  {
+    "id": 38,
+    "nome": "JACANA"
+  },
+  {
+    "id": 39,
+    "nome": "JAGUARA"
+  },
+  {
+    "id": 40,
+    "nome": "JAGUARE"
+  },
+  {
+    "id": 41,
+    "nome": "JARAGUA"
+  },
+  {
+    "id": 42,
+    "nome": "JARDIM ANGELA"
+  },
+  {
+    "id": 43,
+    "nome": "JARDIM HELENA"
+  },
+  {
+    "id": 44,
+    "nome": "JARDIM PAULISTA"
+  },
+  {
+    "id": 45,
+    "nome": "JARDIM SAO LUIS"
+  },
+  {
+    "id": 46,
+    "nome": "JOSE BONIFACIO"
+  },
+  {
+    "id": 47,
+    "nome": "LAJEADO"
+  },
+  {
+    "id": 48,
+    "nome": "LAPA"
+  },
+  {
+    "id": 49,
+    "nome": "LIBERDADE"
+  },
+  {
+    "id": 50,
+    "nome": "LIMAO"
+  },
+  {
+    "id": 51,
+    "nome": "MANDAQUI"
+  },
+  {
+    "id": 53,
+    "nome": "MOEMA"
+  },
+  {
+    "id": 54,
+    "nome": "MOOCA"
+  },
+  {
+    "id": 55,
+    "nome": "MORUMBI"
+  },
+  {
+    "id": 56,
+    "nome": "PARELHEIROS"
+  },
+  {
+    "id": 57,
+    "nome": "PARI"
+  },
+  {
+    "id": 58,
+    "nome": "PARQUE DO CARMO"
+  },
+  {
+    "id": 59,
+    "nome": "PEDREIRA"
+  },
+  {
+    "id": 60,
+    "nome": "PENHA"
+  },
+  {
+    "id": 61,
+    "nome": "PERDIZES"
+  },
+  {
+    "id": 62,
+    "nome": "PERUS"
+  },
+  {
+    "id": 63,
+    "nome": "PINHEIROS"
+  },
+  {
+    "id": 64,
+    "nome": "PIRITUBA"
+  },
+  {
+    "id": 65,
+    "nome": "PONTE RASA"
+  },
+  {
+    "id": 66,
+    "nome": "RAPOSO TAVARES"
+  },
+  {
+    "id": 67,
+    "nome": "REPUBLICA"
+  },
+  {
+    "id": 68,
+    "nome": "RIO PEQUENO"
+  },
+  {
+    "id": 69,
+    "nome": "SACOMA"
+  },
+  {
+    "id": 70,
+    "nome": "SANTA CECILIA"
+  },
+  {
+    "id": 71,
+    "nome": "SANTANA"
+  },
+  {
+    "id": 72,
+    "nome": "SANTO AMARO"
+  },
+  {
+    "id": 73,
+    "nome": "SAO DOMINGOS"
+  },
+  {
+    "id": 74,
+    "nome": "SAO LUCAS"
+  },
+  {
+    "id": 75,
+    "nome": "SAO MATEUS"
+  },
+  {
+    "id": 76,
+    "nome": "SAO MIGUEL"
+  },
+  {
+    "id": 77,
+    "nome": "SAO RAFAEL"
+  },
+  {
+    "id": 78,
+    "nome": "SAPOPEMBA"
+  },
+  {
+    "id": 79,
+    "nome": "SAUDE"
+  },
+  {
+    "id": 80,
+    "nome": "SE"
+  },
+  {
+    "id": 81,
+    "nome": "SOCORRO"
+  },
+  {
+    "id": 82,
+    "nome": "TATUAPE"
+  },
+  {
+    "id": 83,
+    "nome": "TREMEMBE"
+  },
+  {
+    "id": 84,
+    "nome": "TUCURUVI"
+  },
+  {
+    "id": 85,
+    "nome": "VILA ANDRADE"
+  },
+  {
+    "id": 86,
+    "nome": "VILA CURUCA"
+  },
+  {
+    "id": 87,
+    "nome": "VILA FORMOSA"
+  },
+  {
+    "id": 88,
+    "nome": "VILA GUILHERME"
+  },
+  {
+    "id": 89,
+    "nome": "VILA JACUI"
+  },
+  {
+    "id": 90,
+    "nome": "VILA LEOPOLDINA"
+  },
+  {
+    "id": 91,
+    "nome": "VILA MARIA"
+  },
+  {
+    "id": 92,
+    "nome": "VILA MARIANA"
+  },
+  {
+    "id": 93,
+    "nome": "VILA MATILDE"
+  },
+  {
+    "id": 94,
+    "nome": "VILA MEDEIROS"
+  },
+  {
+    "id": 95,
+    "nome": "VILA PRUDENTE"
+  },
+  {
+    "id": 96,
+    "nome": "VILA SONIA"
+  }
+]

@@ -28,7 +28,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="FeriasForTests.json">
+    <None Update="DistritoForTests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="FeirasForTests.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="SubPrefeituraForTest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

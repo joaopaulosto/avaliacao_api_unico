@@ -83,13 +83,14 @@ namespace FeiraSP.WEB.API.Services
             return feiraResponseDto;
         }
 
-        public int Criar(FeiraRequestDto feiraDto)
+        public FeiraResponseDto Criar(FeiraRequestDto feiraDto)
         {
 
             var feira_db = convertDtoToEntity(feiraDto);
             this.feiraContext.Add(feira_db);
             this.feiraContext.SaveChanges();
-            return feira_db.Id;
+            var feiraResp = convertEntityToDto(feira_db);
+            return feiraResp;
 
 
         }

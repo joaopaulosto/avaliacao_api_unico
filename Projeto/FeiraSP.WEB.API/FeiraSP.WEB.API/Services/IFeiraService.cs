@@ -5,7 +5,7 @@ namespace FeiraSP.WEB.API.Services
 {
     public interface IFeiraService
     {
-        int Criar(FeiraRequestDto feiraDto);
+        FeiraResponseDto Criar(FeiraRequestDto feiraDto);
 
         FeiraResponseDto BuscarPorId(int id);
 

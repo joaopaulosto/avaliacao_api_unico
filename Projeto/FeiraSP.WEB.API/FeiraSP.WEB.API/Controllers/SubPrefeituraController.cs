@@ -20,7 +20,7 @@ namespace FeiraSP.WEB.API.Controllers
 
 
         [HttpGet()]
-        public IActionResult ConsultaDistrito()
+        public IActionResult Consulta()
         {
 
             _logger.Information("Consultando SubPrefeituras");
