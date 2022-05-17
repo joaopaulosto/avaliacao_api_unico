@@ -18,8 +18,15 @@ namespace FeiraSP.WEB.API.Controllers
             _logger = logger;
         }
 
-
+        /// <summary>
+        /// Consulta os dados das SubPrefeituras da cidade de São Paulo que faz parte do sistema de feira
+        /// </summary>        
+        /// <returns>Lista de todos as SubPrefeitura onde acontecem as Ferias de São Paulo</returns>
+        /// <response code="200">Retorno quando encontrado registros</response>
+        /// <response code="204">Retorno quando não encontrado registros</response>
         [HttpGet()]
+        [Consumes("application/json")]
+        [Produces("application/json")]
         public IActionResult Consulta()
         {
 
