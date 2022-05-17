@@ -18,13 +18,13 @@ using System.Threading.Tasks;
 
 namespace FeiraSP.Web.API.TEST.Controllers
 {
-    public class FeriaControllerTest
+    public class FeiraControllerTest
     {
         private readonly FeirasController _controller;
         private readonly IFeiraService _serviceFeira;
         private readonly IFeiraLog _serviceLog;
 
-        public FeriaControllerTest()
+        public FeiraControllerTest()
         {
             _serviceFeira = new FeiraServiceFake();
             _serviceLog = new FeiraNLog(configuraMockNLog());
